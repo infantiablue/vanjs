@@ -1,0 +1,28 @@
+{
+  "name": "vanjs-toolkit",
+  "version": "0.0.1",
+  "description": "Vanilla Javascript toolkits for basic web opearations",
+  "main": "dist/vanjs.js",
+  "scripts": {
+    "test": "echo \"No test specific\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/infantiablue/vanjs.git"
+  },
+  "keywords": [
+    "vanilla",
+    "javascript"
+  ],
+  "author": "Truong Phan",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/infantiablue/vanjs/issues"
+  },
+  "homepage": "https://github.com/infantiablue/vanjs#readme",
+  "devDependencies": {
+    "webpack": "^5.36.0",
+    "webpack-cli": "^4.6.0"
+  },
+  "dependencies": {}
+}

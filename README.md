@@ -1,2 +1,3 @@
 # vanjs
-Pure vanilla javascript toolkit
+
+Vanilla Javascript toolkits for basic web opearations.
