@@ -4,6 +4,7 @@
   "description": "Vanilla Javascript toolkits for basic web opearations",
   "main": "dist/vanjs.js",
   "scripts": {
+    "build": "./node_modules/.bin/webpack",
     "test": "echo \"No test specific\" && exit 1"
   },
   "repository": {

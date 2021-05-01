@@ -46,12 +46,12 @@ export const getCookie = (name) => {
  * @param {String} url - Target URL
  * @return {JSON} - Requset params
  */
-export const dPost = async (url = "", data = {}, method = "POST") => {
+export const djangoCall = async (url = "", data = {}, method = "POST") => {
 	// Default options are marked with *
 	let options = {
 		method: method,
-		body: JSON.stringify(data),
 	};
+	if (method != "GET" && method != "HEAD") options["body"] = JSON.stringify(data);
 
 	if ((method = "POST")) {
 		options.mode = "cors";
