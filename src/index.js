@@ -102,3 +102,12 @@ export const notify = (msg, type = "success") => {
 		noti.addEventListener("animationend", () => noti.remove());
 	}, 2000);
 };
+
+/**
+ * Create simple fade in effect, based on animte.css library
+ * @param {Obj} elm - The DOM object to be apply effect
+ */
+export const fadeIn = (elm) => {
+	elm.classList.add("animate__fadeIn", "animate__slow");
+	elm.addEventListener("animationend", () => elm.classList.remove("animate__fadeIn", "animate__slow"));
+};
