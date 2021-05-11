@@ -115,7 +115,7 @@ const notify = (msg, type = "success") => {
 	// Create individual notification element
 	let noti = document.createElement("div");
 	noti.classList.add("alert", `alert-${type}`);
-	noti.innerHTML = `${msg}<button type="button" class="close close-btn" aria-label="Close"><span aria-hidden="true">&times;</span></button>`;
+	noti.innerHTML = `${msg}<button type="button" class="btn-close float-end" aria-label="Close"></button>`;
 	// Append to the container
 	notifyArea.appendChild(noti);
 	// Append the container to the body tag
