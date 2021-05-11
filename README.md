@@ -14,10 +14,26 @@ For now, you will need [Babel](https://babeljs.io/), [Bootstrap 5.x](https://get
 
 ### Installation
 
-For browser
+Use in browser
 
 ```html
     <script src="https://unpkg.com/vanjs-toolkit"></script>
+```
+
+Use as Node module
+
+```bash
+yarn add vanjs-toolkit
+#or
+npm i vanjs-toolkit
+```
+
+then
+
+```javascript
+
+import { fadeIn, ready } from "vanjs-toolkit";
+
 ```
 
 ### JSX
@@ -49,8 +65,6 @@ Implement JSX in pure vanilla javscript. It's really convenient to use JSX witho
     document.querySelector("#root").appendChild(UsingFragment);
   </script>
 ```
-
-Another rational implementation will be considered.
 
 ### ready()
 

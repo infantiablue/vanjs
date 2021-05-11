@@ -110,12 +110,12 @@ const notify = (msg, type = "success") => {
 		notifyArea.style.position = "fixed";
 		notifyArea.style.top = "5%";
 		notifyArea.style.left = "40%";
-		notifyArea.style.width = "20%";
+		notifyArea.style.width = "25%";
 	}
 	// Create individual notification element
 	let noti = document.createElement("div");
-	noti.classList.add("alert", `alert-${type}`);
-	noti.innerHTML = `${msg}<button type="button" class="btn-close float-end" aria-label="Close"></button>`;
+	noti.classList.add("d-flex", "alert", `alert-${type}`);
+	noti.innerHTML = `<span class="flex-grow-1">${msg}</span><button type="button" class="btn-close float-end flex-shrink-0" aria-label="Close"></button>`;
 	// Append to the container
 	notifyArea.appendChild(noti);
 	// Append the container to the body tag
@@ -123,15 +123,15 @@ const notify = (msg, type = "success") => {
 
 	// Auto diminish after 2 seconds with effect
 	setTimeout(() => {
-		notifyArea.classList.add("animate__animated", "animate__fadeOut");
-		notifyArea.addEventListener("animationend", () => noti.remove());
+		noti.classList.add("animate__animated", "animate__fadeOut");
+		noti.addEventListener("animationend", () => noti.remove());
 	}, 2000);
 
 	// Handle closing button for messages
 	let clostBtn = noti.querySelector("button");
 	clostBtn.addEventListener("click", () => {
-		notifyArea.classList.add("animate__animated", "animate__fadeOut");
-		notifyArea.addEventListener("animationend", () => notifyArea.remove());
+		noti.classList.add("animate__animated", "animate__fadeOut");
+		noti.addEventListener("animationend", () => notifyArea.remove());
 	});
 };
 
