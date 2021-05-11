@@ -9,17 +9,38 @@
 			integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
 			crossorigin="anonymous"
 		/>
+		<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 		<script src="/dist/vanjs.js"></script>
-		<script>
+		<script type="text/babel">
+			/** @jsx createElement */
+			/*** @jsxFrag createFragment */
+			const createElement = vanjs.createElement;
+			const appendChild = vanjs.appendChild;
+			const createFragment = vanjs.createFragment;
 			vanjs.ready(() => {
 				console.log("ready");
+				const UsingFragment = (
+					<div>
+						<h1>VanJS Toolkit</h1>
+						<div>
+							<p>This is a paragraph in a fragment in JSX without React</p>
+							<>
+								<p>This is a list by using map.</p>
+							</>
+							<ul>
+								{[1, 2, 3].map((item) => (
+									<li>{item}</li>
+								))}
+							</ul>
+						</div>
+					</div>
+				);
+				document.querySelector("#root").appendChild(UsingFragment);
 			});
 		</script>
 		<title>VanJS</title>
 	</head>
 	<body>
-		<div class="container">
-			<h1>VanJS Toolkit</h1>
-		</div>
+		<div id="root" class="container"></div>
 	</body>
 </html>

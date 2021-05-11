@@ -1,9 +1,36 @@
+/** @jsx createElement */
+/*** @jsxFrag createFragment */
+const createElement = (tag, props, ...children) => {
+	if (typeof tag === "function") return tag(props, ...children);
+	const element = document.createElement(tag);
+
+	Object.entries(props || {}).forEach(([name, value]) => {
+		if (name.startsWith("on") && name.toLowerCase() in window) element.addEventListener(name.toLowerCase().substr(2), value);
+		else element.setAttribute(name, value.toString());
+	});
+
+	children.forEach((child) => {
+		appendChild(element, child);
+	});
+
+	return element;
+};
+
+const appendChild = (parent, child) => {
+	if (Array.isArray(child)) child.forEach((nestedChild) => appendChild(parent, nestedChild));
+	else parent.appendChild(child.nodeType ? child : document.createTextNode(child));
+};
+
+const createFragment = (props, ...children) => {
+	return children;
+};
+
 /**
  * Detect if DOM has fully loaded
  * @param {Function} callback - The function to run after DOM loaded
  * Source: https://tobiasahlin.com/blog/move-from-jquery-to-vanilla-javascript/
  */
-export const ready = (callback) => {
+const ready = (callback) => {
 	if (document.readyState != "loading") callback();
 	else document.addEventListener("DOMContentLoaded", callback);
 };
@@ -13,7 +40,7 @@ export const ready = (callback) => {
  * @param {String} str - The input string
  * @return {number} - The number of words
  */
-export const countWords = (str) => {
+const countWords = (str) => {
 	str = str.trim().replace(/(^\s*)|(\s*$)/gi, "");
 	str = str.replace(/[ ]{2,}/gi, " ");
 	str = str.replace(/\n /, "\n");
@@ -46,7 +73,7 @@ export const getCookie = (name) => {
  * @param {String} url - Target URL
  * @return {JSON} - Requset params
  */
-export const djangoCall = async (url = "", data = {}, method = "POST") => {
+const djangoCall = async (url = "", data = {}, method = "POST") => {
 	// Default options are marked with *
 	let options = {
 		method: method,
@@ -72,7 +99,7 @@ export const djangoCall = async (url = "", data = {}, method = "POST") => {
  * @param {String} msg - The message to display
  * @param {type} msg - Type of mesage to style: success, warning, info, danger, dark
  */
-export const notify = (msg, type = "success") => {
+const notify = (msg, type = "success") => {
 	// Get the container for notifications to display
 	let notifyArea = document.querySelector("#notify");
 	// If not existed, create it
@@ -105,9 +132,11 @@ export const notify = (msg, type = "success") => {
 
 /**
  * Create simple fade in effect, based on animte.css library
- * @param {Obj} elm - The DOM object to be apply effect
+ * @param {DOM} elm - The DOM object to be apply effect
  */
-export const fadeIn = (elm) => {
-	elm.classList.add("animate__fadeIn", "animate__slow");
+const fadeIn = (elm) => {
+	elm.classList.add("animate__animated", "animate__fadeIn", "animate__slow");
 	elm.addEventListener("animationend", () => elm.classList.remove("animate__fadeIn", "animate__slow"));
 };
+
+export { ready, djangoCall, countWords, notify, fadeIn, createElement, appendChild, createFragment };
