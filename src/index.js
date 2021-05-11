@@ -107,6 +107,10 @@ const notify = (msg, type = "success") => {
 		notifyArea = document.createElement("div");
 		notifyArea.setAttribute("id", "notify");
 		notifyArea.classList.add("notify");
+		notifyArea.style.position = "fixed";
+		notifyArea.style.top = "5%";
+		notifyArea.style.left = "40%";
+		notifyArea.style.width = "20%";
 	}
 	// Create individual notification element
 	let noti = document.createElement("div");
@@ -116,18 +120,19 @@ const notify = (msg, type = "success") => {
 	notifyArea.appendChild(noti);
 	// Append the container to the body tag
 	document.querySelector("body").appendChild(notifyArea);
-	// Handle closing button for messages
-	document.querySelectorAll(".close-btn").forEach((btn) => {
-		btn.addEventListener("click", () => {
-			btn.parentElement.classList.add("animate__animated", "animate__fadeOut");
-			btn.parentElement.addEventListener("animationend", () => btn.parentElement.remove());
-		});
-	});
+
 	// Auto diminish after 2 seconds with effect
 	setTimeout(() => {
-		noti.classList.add("animate__animated", "animate__fadeOut");
-		noti.addEventListener("animationend", () => noti.remove());
+		notifyArea.classList.add("animate__animated", "animate__fadeOut");
+		notifyArea.addEventListener("animationend", () => noti.remove());
 	}, 2000);
+
+	// Handle closing button for messages
+	let clostBtn = noti.querySelector("button");
+	clostBtn.addEventListener("click", () => {
+		notifyArea.classList.add("animate__animated", "animate__fadeOut");
+		notifyArea.addEventListener("animationend", () => notifyArea.remove());
+	});
 };
 
 /**
