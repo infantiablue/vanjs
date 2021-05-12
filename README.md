@@ -98,3 +98,7 @@ To be updated
 ### countWords()
 
 To be updated
+
+### fadeIn(), fadeOut()
+
+To be updated

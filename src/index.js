@@ -144,4 +144,13 @@ const fadeIn = (elm) => {
 	elm.addEventListener("animationend", () => elm.classList.remove("animate__fadeIn", "animate__slow"));
 };
 
-export { ready, djangoCall, countWords, notify, fadeIn, createElement, appendChild, createFragment };
+/**
+ * Create simple fade out effect, based on animte.css library
+ * @param {DOM} elm - The DOM object to be apply effect
+ */
+ const fadeOut = (elm) => {
+	elm.classList.add("animate__animated", "animate__fadeOut", "animate__slow"));
+	elm.addEventListener("animationend", () => btn.parentElement.remove());
+};
+
+export { ready, djangoCall, countWords, notify, fadeIn, fadeOut, createElement, appendChild, createFragment };
