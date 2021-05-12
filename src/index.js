@@ -108,9 +108,13 @@ const notify = (msg, type = "success") => {
 		notifyArea.setAttribute("id", "notify");
 		notifyArea.classList.add("notify");
 		notifyArea.style.position = "fixed";
-		notifyArea.style.top = "5%";
-		notifyArea.style.left = "40%";
-		notifyArea.style.width = "25%";
+		notifyArea.style.top = "3vh";
+		if (window.innerWidth < 768) {
+			notifyArea.style.width = "100vw";
+		} else {
+			notifyArea.style.left = "calc(50% - 180px)";
+			notifyArea.style.width = "360px";
+		}
 	}
 	// Create individual notification element
 	let noti = document.createElement("div");
