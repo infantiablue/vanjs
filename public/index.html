@@ -15,30 +15,44 @@
 		<script type="text/babel">
 			/** @jsx createElement */
 			/*** @jsxFrag createFragment */
-			const { createElement, appendChild, createFragment, ready, notify } = vanjs;
-			vanjs.ready(() => {
+			const { createElement, appendChild, createFragment, ready, notify, fadeIn, fadeOut, loadingDots, randomColor} = vanjs;
+			ready(() => {
 				const UsingFragment = (
 					<div>
-						<h3>This is JSX rendered</h3>
+						<div class="d-flex justify-content-left align-items-end gap-2">
+							<h3>This is JSX rendered</h3>
+							<span id="loading"></span>
+						</div>		
 						<>
 							<p>This is a paragraph inside a fragment in JSX without React, loaded when DOM is ready.</p>
 						</>
-						<p>A list by using map function.</p>
+						<p>A list by using <i>map</i> function.</p>
 						<ul>
 							{[1, 2, 3].map((item) => (
 								<li>{item}</li>
 							))}
 						</ul>
-						<button id='notifyBtn' type='button' class='btn btn-primary'>
-							Notify me
-						</button>
+						
+						<div class="d-flex justify-content-left gap-2">
+							<button id='notifyBtn' type='button' class='btn btn-primary'>
+								Notify me
+							</button>
+							<button id='fadeInBtn' type='button' class='btn btn-primary' onClick={(function (e){fadeIn(this)})} >
+								Fade in
+							</button>						
+							<button id='fadeOutBtn' type='button' class='btn btn-primary' onClick={(function (e){fadeOut(this, "faster")})} >
+								Fade out
+							</button>
+							<button id='colorBtn' type='button' class='btn btn-light' onClick={(function (e){this.style.backgroundColor=randomColor()})} >
+								Generate color
+							</button>							
+						</div>
 						<p class="mt-2">Check out <a href="https://github.com/infantiablue/vanjs#readme">the manual</a> or start with <a href="https://github.com/infantiablue/vanjs/blob/main/public/index.html">this boilerplate</a>.</p>
 					</div>
 				);
-				ready(() => {
-					document.querySelector("#root").appendChild(UsingFragment);
-					document.querySelector("#notifyBtn").addEventListener("click", () => notify("There is a notification."));
-				});
+				document.querySelector("#root").appendChild(UsingFragment);
+				document.querySelector("#notifyBtn").addEventListener("click", () => notify("There is a notification."));
+				loadingDots("loading","","h6", true, true)
 			});
 		</script>
 		<title>VanJS</title>
@@ -68,6 +82,7 @@
 			</div>
 		</footer>
 		<!-- Place this tag in your head or just before your close body tag. -->
+		
 		<script async defer src="https://buttons.github.io/buttons.js"></script>
 	</body>
 </html>

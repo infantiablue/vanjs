@@ -142,19 +142,71 @@ const notify = (msg, type = "success") => {
 /**
  * Create simple fade in effect, based on animte.css library
  * @param {DOM} elm - The DOM object to be apply effect
+ * @param {String} speed - slow (2s), slower (3s), fast(800ms), faster(500ms)
  */
-const fadeIn = (elm) => {
-	elm.classList.add("animate__animated", "animate__fadeIn", "animate__slow");
-	elm.addEventListener("animationend", () => elm.classList.remove("animate__fadeIn", "animate__slow"));
+const fadeIn = (elm, speed = "slow") => {
+	let effect = ["animate__animated", "animate__fadeIn", `animate__${speed}`];
+	elm.classList.add(...effect);
+	elm.addEventListener("animationend", () => elm.classList.remove(...effect));
 };
 
 /**
  * Create simple fade out effect, based on animte.css library
  * @param {DOM} elm - The DOM object to be apply effect
+ * @param {String} speed - slow (2s), slower (3s), fast(800ms), faster(500ms)
  */
- const fadeOut = (elm) => {
-	elm.classList.add("animate__animated", "animate__fadeOut", "animate__slow"));
-	elm.addEventListener("animationend", () => btn.parentElement.remove());
+const fadeOut = (elm, speed = "slow") => {
+	let effect = ["animate__animated", "animate__fadeOut", `animate__${speed}`];
+	elm.classList.add(...effect);
+	elm.addEventListener("animationend", () => {
+		elm.classList.remove(...effect);
+		elm.remove();
+	});
 };
 
-export { ready, djangoCall, countWords, notify, fadeIn, fadeOut, createElement, appendChild, createFragment };
+/**
+ * Generate random hex color code.
+ * @void
+ **/
+const randomColor = () => "#" + (Math.random() * 0xfffff * 1000000).toString(16).slice(0, 6);
+
+/**
+ * Display simple three dots loading without any 3rd party library
+ * @param {string} elmID - The ID to load three dots, it should be in a span
+ * @param {string} text - Which text to display before three dots
+ * @param {string} headingSize - The heading tag wrap the loading span
+ * @param {boolean} blink - Toggle the blink effect
+ * @param {number} itv - The interval between a dot loading
+ * @param {number} dots - The number of dots to load
+ * @param {boolean} colorized - Toggle random color dots
+ */
+const loadingDots = (target, text = "Loading", headingSize = "h3", blink = false, colorized = false, itv = 300, dots = 3) => {
+	let container = document.getElementById(target);
+	let heading = document.createElement(headingSize);
+	let textNode = document.createTextNode(text);
+	let loadingSpan = document.createElement("span");
+	heading.appendChild(textNode);
+	heading.appendChild(loadingSpan);
+	container.appendChild(heading);
+
+	const animate = (itv, blink) => {
+		loadingSpan.innerHTML = "";
+		for (let i = 0; i < dots; i++) {
+			if (blink)
+				setTimeout(() => {
+					loadingSpan.innerHTML = "".repeat(itv * (i + 1));
+				}, itv * (i * 2 + 1));
+			setTimeout(() => {
+				loadingSpan.innerHTML = `<span style="color:${colorized ? randomColor() : "black"}"> . </span>`.repeat(i + 1);
+			}, itv * (i * 2 + 2));
+		}
+	};
+	if (container) {
+		animate(itv);
+		setInterval(() => {
+			animate(itv);
+		}, itv * (dots * 2 + 1));
+	}
+};
+
+export { ready, djangoCall, countWords, notify, fadeIn, fadeOut, createElement, appendChild, createFragment, loadingDots, randomColor };

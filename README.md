@@ -102,3 +102,11 @@ To be updated
 ### fadeIn(), fadeOut()
 
 To be updated
+
+### loadingDots()
+
+To be updated
+
+### randomColor()
+
+To be updated
