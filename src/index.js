@@ -209,4 +209,8 @@ const loadingDots = (target, text = "Loading", headingSize = "h3", blink = false
 	}
 };
 
+// const range = (start, end) =>{
+// 	return Array.apply(0, Array(end - 1)).map((element, index) => index + start);
+// },
+
 export { ready, djangoCall, countWords, notify, fadeIn, fadeOut, createElement, appendChild, createFragment, loadingDots, randomColor };
