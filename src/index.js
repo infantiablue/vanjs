@@ -30,11 +30,7 @@ const createFragment = (props, ...children) => {
  * @param {Function} callback - The function to run after DOM loaded
  * Source: https://tobiasahlin.com/blog/move-from-jquery-to-vanilla-javascript/
  */
-const ready = (callback) => {
-	if (document.readyState != "loading") callback();
-	else document.addEventListener("DOMContentLoaded", callback);
-};
-
+const ready = (callback) => (document.readyState != "loading" ? callback() : document.addEventListener("DOMContentLoaded", callback));
 /**
  * Count words from string input, return
  * @param {String} str - The input string
