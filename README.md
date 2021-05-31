@@ -110,3 +110,15 @@ To be updated
 ### randomColor()
 
 To be updated
+
+### isEmail()
+
+To be updated
+
+### minLength()
+
+To be updated
+
+### maxLength()
+
+To be updated
