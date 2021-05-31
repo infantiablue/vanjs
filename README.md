@@ -122,3 +122,11 @@ To be updated
 ### maxLength()
 
 To be updated
+
+## TODO
+
+[] Develop own CSS style to remove Bootstrap dependency or partial import Bootstrap components
+
+[] Implement Rollup
+
+[] Test suite
