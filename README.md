@@ -123,6 +123,14 @@ To be updated
 
 To be updated
 
+### raneg()
+
+Inspired from *range()* in Python, return a list from a pair of integer
+
+```javascript
+console.log(range(1,10)) // [1, 2, 3, 4, 5,6, 7, 8, 9]
+```
+
 ## TODO
 
 [] Develop own CSS style to remove Bootstrap dependency or partial import Bootstrap components

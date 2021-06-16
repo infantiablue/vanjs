@@ -70,7 +70,7 @@ const randomColor = () => "#" + (Math.random() * 0xfffff * 1000000).toString(16)
  * @returns {Arrray}
  */
 const range = (start, end) => {
-	return Array.apply(0, Array(end - 1)).map((element, index) => index + start);
+	return Array.apply(0, Array(end - 1)).map((_, index) => index + start);
 };
 
 export default { countWords, getCookie, randomColor, range, djangoCall };
